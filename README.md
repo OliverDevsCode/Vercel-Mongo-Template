@@ -1,6 +1,6 @@
 # Backend API Documentation
 
-This repository contains the backend API code for verifying game scores, leaderboard management, and user-related data.
+This repository contains the backend API code leaderboard management, and user-related data.
 
 > **Note:** All sensitive keys and secrets have been removed from the code. Be sure to configure environment variables before running the application.
 
