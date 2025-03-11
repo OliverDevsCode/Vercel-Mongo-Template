@@ -10,15 +10,9 @@ This repository contains the backend API code for verifying game scores, leaderb
 
 - [Installation](#installation)
 - [Running the Server](#running-the-server)
-- [Directory Structure](#directory-structure)
 - [API Endpoints](#api-endpoints)
-  - [GET `/api/verifyscore`](#get-apiverifyscore)
-  - [GET `/api/getScore`](#get-apigetscore)
   - [GET `/api/leaderboard`](#get-apileaderboard)
   - [POST `/api/enterScore`](#post-apienterscore)
-  - [POST `/api/verifyLeaderboard`](#post-apiverifyleaderboard)
-  - [GET `/api/database`](#get-apidatabase)
-  - [GET `/api/getUsername`](#get-apigetusername)
 - [Database Models](#database-models)
   - [DatabaseEntry](#databaseentry)
   - [LeaderboardEntry](#leaderboardentry)
@@ -39,10 +33,6 @@ This repository contains the backend API code for verifying game scores, leaderb
    npm install
    ```
 
-3. **Configure Environment Variables:**
-   - Set up your MongoDB connection string and any necessary API keys in a `.env` file.
-
----
 
 ## Running the Server
 
@@ -58,70 +48,8 @@ npm run dev
 
 ---
 
-## Directory Structure
-
-```
-/backend-repo
-├── routes/
-│   ├── api.js       # API endpoint routes
-├── models/
-│   ├── database.js  # Database models
-├── server.js        # Main server entry point
-├── .env             # Environment variables
-├── package.json     # Dependencies & scripts
-└── README.md        # API Documentation
-```
-
----
-
 # API Endpoints
 
-## GET `/api/verifyscore`
-
-**Description:**
-Verifies a game score by ensuring the provided score is valid.
-
-**Query Parameters:**
-- `score` (number): The game score.
-- `completed` (string): Should be `"true"`.
-
-**Example Request:**
-```bash
-curl "http://localhost:3000/api/verifyscore?score=100&completed=true"
-```
-
-**Successful Response (200):**
-```json
-{
-  "message": "valid",
-  "score": "100",
-  "completed": true,
-  "hashValue": "<hash of score>"
-}
-```
-
----
-
-## GET `/api/getScore`
-
-**Description:**
-Retrieves the last stored game score for the session.
-WARNING DEPRECIATED
-
-**Example Request:**
-```bash
-curl "http://localhost:3000/api/getScore"
-```
-
-**Successful Response (200):**
-```json
-{
-  "score": 100,
-  "hashValue": "<hash of score>"
-}
-```
-
----
 
 ## GET `/api/leaderboard`
 
@@ -188,78 +116,8 @@ curl -X POST "http://localhost:3000/api/enterScore" \
 }
 ```
 
----
-
-## POST `/api/verifyLeaderboard`
-
-**Description:**
-Verifies the integrity of leaderboard scores.
-
-**Example Request:**
-```bash
-curl -X POST "http://localhost:3000/api/verifyLeaderboard"
-```
-
-**Successful Response (200):**
-```json
-{
-  "message": "Leaderboard verified successfully."
-}
-```
-
----
-
-## GET `/api/database`
-
-**Description:**
-Returns raw database entries for debugging purposes.
-
-**Example Request:**
-```bash
-curl "http://localhost:3000/api/database"
-```
-
-**Successful Response (200):**
-```json
-{
-  "data": [ ... ]
-}
-```
-
----
-
-## GET `/api/getUsername`
-
-**Description:**
-Retrieves the username from random username API and returns the name and hash.
-
-**Example Request:**
-```bash
-curl "http://localhost:3000/api/getUsername"
-```
-
-**Successful Response (200):**
-```json
-{
-  "username": "TestUser",
-  "hashValue": "<hash of username>"
-}
-```
-
----
-
-
 
 ## Database Models
-
-### `DatabaseEntry`
-```json
-{
-  "username": "Player1",
-  "score": 1500,
-  "timestamp": "2024-02-15T12:00:00Z"
-}
-```
 
 ### `LeaderboardEntry`
 ```json
@@ -274,7 +132,6 @@ curl "http://localhost:3000/api/getUsername"
 
 ## Notes
 - Ensure all API requests include the necessary authentication if required.
-- Hash verification is used to maintain data integrity.
 - Leaderboard is updated dynamically based on new scores.
 
 ---
